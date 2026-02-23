@@ -7,7 +7,7 @@
   place-items: center;
   text-align: center;
   color: #fff;
-  background: url("../assets/images/hero.jpg") center/cover no-repeat;
+  background: url("../assets/images/image1.png") center/cover no-repeat;
 }
 
 .hero__overlay {
@@ -159,8 +159,8 @@
   background: rgba(0,0,0,.55);
 }
 
-.feature__bg--one { background-image: url("../assets/images/feature-1.jpg"); }
-.feature__bg--two { background-image: url("../assets/images/feature-2.jpg"); }
+.feature__bg--one { background-image: url("../assets/images/image2.png"); }
+.feature__bg--two { background-image: url("../assets/images/image3.png"); }
 
 .feature__inner { position: relative; }
 
@@ -206,7 +206,7 @@
 .testimonials__bg {
   position: absolute;
   inset: 0;
-  background: url("../assets/images/testimonial-bg.jpg") center/cover no-repeat;
+  background: url("../assets/images/rectangle10.png") center/cover no-repeat;
 }
 
 .testimonials__bg::after {
