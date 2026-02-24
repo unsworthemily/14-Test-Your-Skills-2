@@ -1,0 +1,45 @@
+@use "../variables" as v;
+@use "../mixins" as m;
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field__label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.field__input,
+.field__textarea {
+  width: 100%;
+  border-radius: v.$radius;
+  border: 1px solid v.$line;
+  padding: 12px 14px;
+  background: v.$color-white;
+  outline: none;
+  font-family: v.$font-body;
+
+  @include m.focus-ring;
+}
+
+.field__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.form-error {
+  margin: 0;
+  min-height: 18px;
+  font-size: 13px;
+  color: #b00020;
+}

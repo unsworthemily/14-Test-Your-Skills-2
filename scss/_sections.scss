@@ -1,5 +1,9 @@
-@use "variables" as v;
+/* sections.scss */
+@use "../variables" as v;
 
+/* =========================================================
+   DEL 1 — HERO  (background1.png)
+========================================================= */
 .hero {
   position: relative;
   min-height: 92vh;
@@ -7,17 +11,23 @@
   place-items: center;
   text-align: center;
   color: #fff;
-  background: url("../assets/images/image1.png") center/cover no-repeat;
+  background: url("../images/background1.png") center/cover no-repeat;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.35)
+  );
 }
 
 .hero__inner {
   position: relative;
+  z-index: 2;
   padding: 70px 0;
   max-width: 900px;
 }
@@ -62,10 +72,14 @@
   opacity: 0.9;
 }
 
-/* WHY */
+/* =========================================================
+   DEL 2 — WHY  (background2.png)
+========================================================= */
 .why {
   padding: 70px 0;
-  background: v.$color-bg;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../images/background2.png") center/cover no-repeat;
 }
 
 .why__inner {
@@ -82,6 +96,8 @@
 .why__img {
   border-radius: v.$radius;
   box-shadow: v.$shadow;
+  width: 100%;
+  height: auto;
 }
 
 @media (min-width: v.$bp-md) {
@@ -100,12 +116,18 @@
   }
 }
 
-/* STEPS */
+/* =========================================================
+   DEL 3 — SEARCH / SELECT / BOOK  (background3.png)
+========================================================= */
 .steps {
-  padding: 28px 0;
-  background: rgba(15, 23, 42, 0.06);
+  position: relative;
+  padding: 48px 0;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("../images/background3.png") center/cover no-repeat;
   border-top: 1px solid v.$line;
   border-bottom: 1px solid v.$line;
+  overflow: hidden;
 }
 
 .steps__inner {
@@ -113,6 +135,13 @@
   grid-template-columns: 1fr;
   gap: 18px;
   text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step {
+  display: grid;
+  justify-items: center;
 }
 
 .step__icon {
@@ -131,13 +160,35 @@
   font-weight: 700;
 }
 
+.steps__shape {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(980px, 92%);
+  height: auto;
+  z-index: 1;
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (min-width: v.$bp-md) {
   .steps__inner {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* FEATURE */
+@media (max-width: v.$bp-md) {
+  .steps__shape {
+    display: none;
+  }
+}
+
+/* =========================================================
+   DEL 4 — SPAIN 1  (background4.png)
+   DEL 5 — SPAIN 2  (background5.png)
+========================================================= */
 .feature {
   position: relative;
   min-height: 520px;
@@ -156,26 +207,35 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.55);
+  background: rgba(0, 0, 0, 0.48);
 }
 
-.feature__bg--one { background-image: url("../assets/images/image2.png"); }
-.feature__bg--two { background-image: url("../assets/images/image3.png"); }
+.feature__bg--one {
+  background-image: url("../images/background4.png");
+}
 
-.feature__inner { position: relative; }
+.feature__bg--two {
+  background-image: url("../images/background5.png");
+}
+
+.feature__inner {
+  position: relative;
+}
 
 .feature-card {
   width: min(540px, 100%);
-  background: rgba(17,17,17,.64);
+  background: rgba(17, 17, 17, 0.64);
   color: #fff;
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: v.$radius;
   padding: 22px;
-  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(6px);
 }
 
-.feature--right .feature-card { margin-left: auto; }
+.feature--right .feature-card {
+  margin-left: auto;
+}
 
 .feature-card__meta {
   margin: 0 0 6px;
@@ -193,35 +253,28 @@
 
 .feature-card__text {
   margin: 0 0 14px;
-  color: rgba(255,255,255,.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-/* TESTIMONIALS */
+/* =========================================================
+   DEL 6 — WHAT OUR TOURIST SAY  (background6.png)
+========================================================= */
 .testimonials {
   position: relative;
   padding: 70px 0;
-  color: #fff;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../images/background6.png") center/cover no-repeat;
 }
 
-.testimonials__bg {
-  position: absolute;
-  inset: 0;
-  background: url("../assets/images/rectangle10.png") center/cover no-repeat;
+.testimonials__inner {
+  position: relative;
 }
-
-.testimonials__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.68);
-}
-
-.testimonials__inner { position: relative; }
 
 .testimonial-card {
   margin-top: 22px;
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: v.$radius;
   padding: 18px;
   display: grid;
@@ -243,66 +296,11 @@
 
 .testimonial-card__text {
   margin: 0;
-  color: rgba(255,255,255,.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @media (min-width: v.$bp-md) {
   .testimonial-card {
     grid-template-columns: 260px 1fr;
-  }
-}
-
-/* CONTACT */
-.contact {
-  padding: 70px 0 90px;
-  background: v.$color-bg;
-}
-
-.contact__inner {
-  display: grid;
-  gap: 28px;
-}
-
-@media (min-width: v.$bp-md) {
-  .contact__inner {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-}
-
-/* FOOTER */
-.footer {
-  background: #0f1217;
-  color: #fff;
-  padding: 28px 0;
-}
-
-.footer__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-.footer__tagline {
-  margin: 6px 0 0;
-  opacity: 0.8;
-}
-
-.footer__social {
-  display: flex;
-  gap: 14px;
-}
-
-.footer__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255,255,255,.16);
-  @media (hover:hover) {
-    &:hover { opacity: 0.85; }
   }
 }

@@ -2,14 +2,42 @@
 const toggle = document.querySelector(".nav__toggle");
 const menu = document.querySelector(".nav__list");
 
+function setMenuOpen(open) {
+  if (!toggle || !menu) return;
+
+  menu.classList.toggle("is-open", open);
+  toggle.setAttribute("aria-expanded", String(open));
+}
+
 if (toggle && menu) {
-  toggle.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = menu.classList.contains("is-open");
+    setMenuOpen(!isOpen);
+  });
+
+  // Klick utanför stänger
+  document.addEventListener("click", (e) => {
+    if (!menu.classList.contains("is-open")) return;
+
+    const clickedInside = menu.contains(e.target) || toggle.contains(e.target);
+    if (!clickedInside) setMenuOpen(false);
+  });
+
+  // ESC stänger
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
+  // Klick på en länk stänger menyn (bra på mobile)
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
   });
 }
 
-// SIMPLE FORM VALIDATION (Search + Contact)
+/* =========================================================
+   SIMPLE FORM VALIDATION (Search + Contact)
+========================================================= */
 function setError(id, message) {
   const el = document.querySelector(`[data-error-for="${id}"]`);
   if (el) el.textContent = message || "";

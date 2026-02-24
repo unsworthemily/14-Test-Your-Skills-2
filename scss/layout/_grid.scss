@@ -1,0 +1,63 @@
+@use "../variables" as v;
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  color: v.$color-white;
+  padding: 48px 0;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)),
+    url("../images/background3.png") center/cover no-repeat;
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__logo {
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.footer__tagline {
+  margin: 6px 0 0;
+  opacity: 0.8;
+}
+
+.footer__social {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: v.$color-white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) {
+  .footer__icon:hover {
+    opacity: 0.85;
+  }
+}

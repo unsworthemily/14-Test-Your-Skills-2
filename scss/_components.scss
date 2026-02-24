@@ -1,0 +1,126 @@
+@use "../variables" as v;
+
+/* =========================================================
+   HEADER WRAPPER
+   OBS: omsluter HERO + NAV i din HTML → får INTE vara sticky
+========================================================= */
+.header {
+  position: static;
+  z-index: 1;
+  background: transparent; /* hero ska synas */
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+
+/* =========================================================
+   NAV BAR (blå rad under hero)
+   Sticky här istället
+========================================================= */
+.header__bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: v.$color-primary;
+  color: v.$color-white;
+}
+
+/* Innehållet i nav-baren */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 0;
+}
+
+/* Brand i nav-baren */
+.brand {
+  color: v.$color-white;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Nav wrapper */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Toggle (mobil) */
+.nav__toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: v.$color-white;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* List */
+.nav__list {
+  display: flex;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Links */
+.nav__link {
+  color: v.$color-white;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  opacity: 0.95;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: hover) {
+  .nav__link:hover {
+    opacity: 0.85;
+  }
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+@media (max-width: v.$bp-md) {
+  .nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav__list {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: calc(100% + 10px);
+    flex-direction: column;
+    background: v.$color-white;
+    border: 1px solid v.$line;
+    border-radius: v.$radius;
+    padding: 12px;
+    box-shadow: v.$shadow;
+    gap: 10px;
+    min-width: 220px;
+  }
+
+  .nav__list.is-open {
+    display: flex;
+  }
+
+  .nav__link {
+    color: v.$color-text;
+    opacity: 1;
+  }
+}

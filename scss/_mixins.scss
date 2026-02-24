@@ -1,0 +1,136 @@
+/* =========================================================
+   MIXINS
+========================================================= */
+
+@use "../variables" as v;
+
+/* ---------------------------------------------------------
+   1) Focus Ring (tillgänglighet + fallback)
+--------------------------------------------------------- */
+@mixin focus-ring(
+  $color: #3b82f6,
+  $offset: 2px,
+  $width: 2px
+) {
+  &:focus {
+    outline: $width solid $color;
+    outline-offset: $offset;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   2) Flex Center (centrera horisontellt + vertikalt)
+--------------------------------------------------------- */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------------------------------------------------------
+   3) Card Style
+--------------------------------------------------------- */
+@mixin card-style(
+  $bg: v.$color-white,
+  $shadow: v.$shadow,
+  $radius: v.$radius,
+  $padding: 16px
+) {
+  background: $bg;
+  box-shadow: $shadow;
+  border-radius: $radius;
+  padding: $padding;
+}
+
+/* ---------------------------------------------------------
+   4) Responsive Media Queries
+   Använd: @include respond-to(md) { ... }
+--------------------------------------------------------- */
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: v.$bp-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: v.$bp-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: v.$bp-lg) { @content; }
+  } @else {
+    @warn "Unknown breakpoint: #{$breakpoint}. Use sm | md | lg.";
+  }
+}
+
+/* ---------------------------------------------------------
+   5) Overlay Gradient
+   Kräver position: relative på parent
+--------------------------------------------------------- */
+@mixin overlay-gradient(
+  $start: rgba(0, 0, 0, 0.55),
+  $end: rgba(0, 0, 0, 0.35)
+) {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, $start, $end);
+  }
+}
+
+/* ---------------------------------------------------------
+   6) Button Primary
+--------------------------------------------------------- */
+@mixin btn-primary(
+  $bg: v.$color-primary,
+  $color: v.$color-white,
+  $radius: 999px,
+  $padding: 12px 24px
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg;
+  color: $color;
+  border-radius: $radius;
+  padding: $padding;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  @include focus-ring();
+}
+
+/* ---------------------------------------------------------
+   7) Step Icon Circle
+--------------------------------------------------------- */
+@mixin step-icon(
+  $size: 48px,
+  $bg: v.$color-white,
+  $border: 1px solid v.$line
+) {
+  width: $size;
+  height: $size;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 10px;
+  background: $bg;
+  border: $border;
+}
+
+/* ---------------------------------------------------------
+   8) Text Muted
+--------------------------------------------------------- */
+@mixin text-muted($color: v.$color-muted) {
+  color: $color;
+}
