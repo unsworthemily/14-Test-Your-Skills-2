@@ -1,85 +1,58 @@
 @use "../variables" as v;
 
-/* =========================================================
-   HEADER WRAPPER
-   (Omsluter hero + nav i din HTML)
-   Ska INTE vara sticky
-========================================================= */
 .header {
-  position: static;     // viktigt: inte sticky
+  position: relative;
   z-index: 1;
-  background: transparent; // hero-bilden ska synas
+  background: transparent;
 }
 
-/* =========================================================
-   NAV BAR (den blå raden under hero)
-   Denna kan vara sticky
-========================================================= */
+/* LILA NAV-RAD */
 .header__bar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background: v.$color-primary;
   color: v.$color-white;
 }
 
-/* Inner layout */
 .header__inner {
+  height: 80px;                 /* 1170x80 i Figma */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 0;
-  gap: 18px;
 }
 
-/* Logo / Brand */
+/* BHROMAON i lila raden */
 .brand {
   color: v.$color-white;
+  font-family: v.$font-body;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 24px;
+  line-height: 26px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
-  text-decoration: none;
 }
 
-/* Nav wrapper */
+/* MENY */
 .nav {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
-/* Nav list */
 .nav__list {
   display: flex;
-  gap: 26px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 34px;          /* ger ungefär rätt “luft” */
+  align-items: center;
 }
 
-/* Nav links */
 .nav__link {
   color: v.$color-white;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.10em;
+  font-family: v.$font-heading; /* Aleo */
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 0;
   text-transform: uppercase;
-  opacity: 0.95;
-  transition: opacity 0.2s ease;
 }
 
-@media (hover: hover) {
-  .nav__link:hover {
-    opacity: 0.85;
-  }
-}
-
-/* =========================================================
-   MOBILE NAV
-========================================================= */
-
+/* Toggle (mobil) */
 .nav__toggle {
   display: none;
   background: transparent;
@@ -90,36 +63,26 @@
   cursor: pointer;
 }
 
-/* Breakpoint */
 @media (max-width: v.$bp-md) {
-
-  .nav__toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+  .nav__toggle { display: inline-flex; }
 
   .nav__list {
     display: none;
     position: absolute;
-    right: 20px;
-    top: calc(100% + 10px);
+    right: 30px;
+    top: 80px;
     flex-direction: column;
     background: v.$color-white;
     border: 1px solid v.$line;
     border-radius: v.$radius;
-    padding: 12px;
-    box-shadow: v.$shadow;
+    padding: 14px;
     gap: 12px;
-    min-width: 220px;
+    min-width: 240px;
   }
 
-  .nav__list.is-open {
-    display: flex;
-  }
+  .nav__list.is-open { display: flex; }
 
   .nav__link {
     color: v.$color-text;
-    opacity: 1;
   }
 }

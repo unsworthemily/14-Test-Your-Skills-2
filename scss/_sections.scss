@@ -6,172 +6,226 @@
 ========================================================= */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: calc(100vh - 80px); /* så hero + lila rad ≈ full vy */
   display: grid;
   place-items: center;
   text-align: center;
-  color: #fff;
+  color: v.$color-white;
   background: url("../images/background1.png") center/cover no-repeat;
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.35)
-  );
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
 }
 
 .hero__inner {
   position: relative;
   z-index: 2;
-  padding: 70px 0;
   max-width: 900px;
+  padding: 70px 0;
 }
 
+/* BHROMAON (stor) */
 .hero__title {
-  margin: 0 0 6px;
-  font-size: clamp(42px, 6vw, 72px);
-  letter-spacing: 0.12em;
-}
-
-.hero__subtitle {
-  margin: 0 0 22px;
-  opacity: 0.9;
-  letter-spacing: 0.14em;
+  margin: 0 0 10px;
+  font-family: v.$font-body;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 76px;         /* matchar ditt 372x76 feel */
+  letter-spacing: 4.8px;
   text-transform: uppercase;
-  font-size: 12px;
 }
 
+/* Safe Travel Anywhere */
+.hero__subtitle {
+  margin: 0 0 34px;
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 6.82px;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+/* Search-form */
 .hero__form {
-  width: min(640px, 100%);
-  margin: 0 auto 16px;
-  display: flex;
+  width: min(650px, 100%);
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: 1fr 153px; /* knappbredd */
   border-radius: 999px;
   overflow: hidden;
   background: #fff;
+  height: 63px; /* matchar knappen */
 }
 
+/* Input */
 .hero__input {
-  flex: 1;
   border: 0;
-  padding: 14px 16px;
+  padding: 0 22px;
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 2.8px;
   outline: none;
 }
 
-.hero__btn {
-  border-radius: 0;
+.hero__input::placeholder {
+  color: #999999;
+  opacity: 1;
 }
 
+/* Knapp (153x63) */
+.hero__btn {
+  width: 153px;
+  height: 63px;
+  border: 0;
+  background: v.$color-primary;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Scroll down */
 .hero__scroll {
-  display: inline-block;
-  margin-top: 10px;
-  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  letter-spacing: 2.8px;
+  color: #fff;
+  text-transform: uppercase;
+  opacity: 0.95;
 }
 
 /* =========================================================
-   DEL 2 — WHY  (background2.png)
+   DEL 2 — WHY CHOOSE US  (background2.png)
 ========================================================= */
+@use "variables" as v;
+
 .why {
-  padding: 70px 0;
+  min-height: 685px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+
   background:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
     url("../images/background2.png") center/cover no-repeat;
 }
 
 .why__inner {
   display: grid;
-  gap: 36px;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
   align-items: center;
 }
 
+/* TITEL */
+.section-title {
+  font-family: v.$font-heading;   /* Aleo */
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 26px;
+  letter-spacing: 0;
+  margin-bottom: 40px;
+}
+
+/* TEXT */
+.why__content p {
+  max-width: 560px;
+  font-family: v.$font-body;      /* Josefin Sans */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 1.6px;
+  color: #E8E8E8;
+  margin-bottom: 24px;
+}
+
+/* Explore Places */
+.why__content .btn {
+  font-family: v.$font-heading;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  padding: 0;
+}
+
+/* Bilder */
 .why__images {
-  display: grid;
-  gap: 16px;
-}
-
-.why__img {
-  border-radius: v.$radius;
-  box-shadow: v.$shadow;
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 450px;
 }
 
-@media (min-width: v.$bp-md) {
-  .why__inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-  }
+/* Bild 1 (hus + vatten) */
+.why__img--one {
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+  top: 0;
+  right: 0;
+}
 
-  .why__images {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-
-  .why__img--two {
-    margin-top: 38px;
-  }
+/* Bild 2 (berg) */
+.why__img--two {
+  position: absolute;
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+  bottom: 0;
+  left: 0;
 }
 
 /* =========================================================
    DEL 3 — SEARCH / SELECT / BOOK  (background3.png)
 ========================================================= */
-.steps {
-  position: relative;
-  padding: 48px 0;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url("../images/background3.png") center/cover no-repeat;
-  border-top: 1px solid v.$line;
-  border-bottom: 1px solid v.$line;
-  overflow: hidden;
-}
+<section class="steps" id="what" aria-label="How it works">
+  <div class="container steps__inner">
 
-.steps__inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
+    <div class="step">
+      <img class="step__img step__img--search"
+           src="images/search.png"
+           alt="Search icon" />
+      <p class="step__label">Search Places</p>
+    </div>
 
-.step {
-  display: grid;
-  justify-items: center;
-}
+    <div class="step">
+      <img class="step__img step__img--select"
+           src="images/select.png"
+           alt="Select icon" />
+      <p class="step__label">Select Places</p>
+    </div>
 
-.step__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 10px;
-  background: #fff;
-  border: 1px solid v.$line;
-}
+    <div class="step">
+      <img class="step__img step__img--book"
+           src="images/book.png"
+           alt="Book icon" />
+      <p class="step__label">Book & Enjoy</p>
+    </div>
 
-.step__label {
-  margin: 0;
-  font-weight: 700;
-}
+  </div>
 
-.steps__shape {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  width: min(980px, 92%);
-  height: auto;
-  z-index: 1;
-  opacity: 0.9;
-  pointer-events: none;
-  user-select: none;
-}
+  <img class="steps__shape"
+       src="images/arc.png"
+       alt=""
+       aria-hidden="true" />
+</section>
 
 @media (min-width: v.$bp-md) {
   .steps__inner {
@@ -190,9 +244,9 @@
    DEL 5 — SPAIN 2  (background5.png)
 ========================================================= */
 .feature {
+  min-height: 700px;
   position: relative;
-  min-height: 520px;
-  display: grid;
+  display: flex;
   align-items: center;
   overflow: hidden;
 }
@@ -203,104 +257,162 @@
   background: center/cover no-repeat;
 }
 
-.feature__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.48);
-}
-
 .feature__bg--one {
   background-image: url("../images/background4.png");
 }
 
-.feature__bg--two {
-  background-image: url("../images/background5.png");
+.feature__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .feature__inner {
   position: relative;
+  z-index: 2;
 }
 
+/* Kortet */
 .feature-card {
-  width: min(540px, 100%);
-  background: rgba(17, 17, 17, 0.64);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: v.$radius;
-  padding: 22px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(6px);
+  width: 543px;
+  height: 374px;
+  background: rgba(35, 35, 35, 0.9); /* #232323 90% */
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.feature--right .feature-card {
-  margin-left: auto;
-}
-
+/* Spain */
 .feature-card__meta {
-  margin: 0 0 6px;
-  opacity: 0.85;
+  font-family: v.$font-body; /* Josefin */
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 1.5px;
+  color: #E8E8E8;
+  margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 12px;
 }
 
+/* Grand Spain Madrid */
 .feature-card__title {
-  margin: 0 0 10px;
-  font-size: 28px;
-  font-family: v.$font-heading;
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  margin: 0;
 }
 
+/* Text */
 .feature-card__text {
-  margin: 0 0 14px;
-  color: rgba(255, 255, 255, 0.85);
+  width: 508px;
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: #E8E8E8;
+  margin: 0;
+}
+
+/* Lila knapp */
+.feature-card__btn {
+  width: 228px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(90deg, #496BFE, #5474FD);
+  color: #FFFFFF;
+
+  font-family: v.$font-heading; /* Aleo */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 /* =========================================================
    DEL 6 — WHAT OUR TOURIST SAY  (background6.png)
 ========================================================= */
 .testimonials {
-  position: relative;
-  padding: 70px 0;
+  min-height: 731px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+
   background:
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("../images/background6.png") center/cover no-repeat;
 }
 
 .testimonials__inner {
-  position: relative;
-}
-
-.testimonial-card {
-  margin-top: 22px;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: v.$radius;
-  padding: 18px;
-  display: grid;
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.testimonial-card__img {
-  width: 240px;
-  height: 150px;
+/* Titel */
+.testimonials__title {
+  font-family: v.$font-heading; /* Aleo */
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+/* Layout för bild + ruta */
+.testimonial {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Bild */
+.testimonial__img {
+  width: 445px;
+  height: 284px;
   object-fit: cover;
-  border-radius: 14px;
 }
 
-.testimonial-card__name {
-  margin: 0 0 8px;
-  font-family: v.$font-heading;
+/* Ruta */
+.testimonial__card {
+  width: 668px;
+  height: 287px;
+  background: #232323;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.testimonial-card__text {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+/* Namn */
+.testimonial__name {
+  font-family: v.$font-body; /* Josefin */
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: #FEFEFE;
+  margin-bottom: 20px;
 }
 
-@media (min-width: v.$bp-md) {
-  .testimonial-card {
-    grid-template-columns: 260px 1fr;
-  }
+/* Text */
+.testimonial__text {
+  width: 581px;
+  font-family: v.$font-body; /* Original använder Josefin */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0;
+  color: #E8E8E8;
 }
